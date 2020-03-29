@@ -1,15 +1,8 @@
 
-
-
+// EXAMPLES:
 // tokenise(String) => [ String | [ String | .. ] ] // arrays may be nested and/or empty
 // tokenise("A + B * C") === [ "A", "+", "B", "*", "C" ]
 // tokenise("function a(arg, arg)") === [ "function", "a", [ "arg", ",", "arg" ] ]
-const operators = "!#$%&*+-/<=>@^_.,;"
-
-// Tokenizer state
-const [
-  UNINITIALIZED, IDENTIFIER, OPERATOR,
-] = [...Array(100).keys()] // Erbitrary range (must be larger than number of states)
 
 function tokenise(string) {
   // Test for paranthesis mismatch
@@ -24,16 +17,13 @@ function tokenise(string) {
     substr = string.substr(i)
     matchData = substr.match(/(^[a-zA-Z]+)/)
     if (matchData) {
-      console.log(`found string: ${matchData[0]}`)
       matchData[0].length > 0 && tokens.push(matchData[0])
       i += matchData[0].length
     }
-    // console.log(i)
     // Try for operator
     substr = string.substr(i)
     matchData = substr.match(/^([!#$%&*+\-\/<=>@^_.,;]+)/)
     if (matchData) {
-      console.log(`found operator: ${matchData[0]}`)
       matchData[0].length > 0 && tokens.push(matchData[0])
       i += matchData[0].length
     }
@@ -41,7 +31,6 @@ function tokenise(string) {
     substr = string.substr(i)
     matchData = substr.match(/^(\s)+/)
     if(matchData) {
-      console.log('found whitespace')
       i += matchData[0].length
     }
   }
