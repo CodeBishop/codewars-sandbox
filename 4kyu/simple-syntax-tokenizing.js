@@ -47,18 +47,6 @@ function tokenise(string) {
   return tokens
 }
 
-// console.log(tokenise("")) // []
-// console.log(tokenise("()")) // [ [] ]
-// console.log(tokenise("a (Word) foo")) // [ "a", [ "Word" ] ]
-// console.log(tokenise("These are tokens.")) // 
-// console.log(JSON.stringify(tokenise("These are tokens.")))
-// [ "These", "are", "tokens", "." ]
-// console.log(0===JSON.stringify(tokenise("These are tokens.")).localeCompare(`["These","are","tokens","."]`))
-// console.log(tokenise("add(a, b) = a + b")) // [ "add", [ "a", ",", "b" ], "=", "a", "+", "b" ]
-// console.log(tokenise("A *(B ^& C)")) // [ "A", "*", [ "B", "^&", "C" ] ]
-// console.log(tokenise("do $ readLine >>= putStrLn")) // [ "do", "$", "readLine", ">>=", "putStrLn" ]
-// console.log(tokenise("A single mismatched bracket (")) // null
-
 describe("Simple Syntax Tokenizing", ()=>{
   it("Example Tests", ()=>{
     Test.assertDeepEquals( tokenise(""), [] );
