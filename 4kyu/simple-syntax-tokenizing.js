@@ -6,29 +6,12 @@
 
 const {describe, it, Test} = require('../test-framework')
 
-const identifierRegex = new RegExp("(^[a-zA-Z]+)")
-const operatorRegex = new RegExp("^([!#$%&*+\-\/<=>@^_.,;]+)")
-
-function validParantheses(string) {
-  // Fast test for paranthesis miscount
-  if(string.split('(').length !== string.split(')').length) {return false}
-  
-  // Test for parantheses mis-arrangement
-  let nestCount = 0
-  for(let i = 0; i < string.length; i++) {
-    if (string[i] === '(') {nestCount++}
-    if (string[i] === ')') {nestCount--}
-    if (nestCount < 0) {return false}
-  }
-  return nestCount === 0
-}
-
 function tokenise(string) {
-  if (!validParantheses(string)) {return null}
+  if(string.split('(').length !== string.split(')').length) {return null}
   if (string.length = 0) {return []}
 
   const tokens = []
-  let matchData = '', i = 0, substr
+  let matchData = '', i = 0
 
   while (i < string.length) {
     // Extract paranthesized subgroups
@@ -42,25 +25,13 @@ function tokenise(string) {
       }
       tokens.push(tokenise(string.substring(i+1, j)))
       i += j-i+1
-    }
+    } else if (string[i] === ')') {return null}
     
     // Skip over whitespace
     while(' \n\r\t'.includes(string[i]) && i < string.length) {i++}
 
-    // Try for identifier
-    substr = string.substr(i)
-    matchData = substr.match(identifierRegex)
+    matchData = string.substr(i).match(/^([a-zA-Z]+|[!#$%&*+-/<=>@^_.,;]+)/)
     if (matchData) {
-      // console.log(`word: ${matchData[0]}`)
-      matchData[0].length > 0 && tokens.push(matchData[0])
-      i += matchData[0].length
-    }
-
-    // Try for operator
-    substr = string.substr(i)
-    matchData = substr.match(operatorRegex)
-    if (matchData) {
-      // console.log(`operator: ${matchData[0]}`)
       matchData[0].length > 0 && tokens.push(matchData[0])
       i += matchData[0].length
     }
