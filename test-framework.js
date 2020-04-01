@@ -1,4 +1,8 @@
 
+// TODO: Write assertEquals
+//    It should return fail messages like this:
+//      Expected: 'hisTay siay ymay tringsay', instead got: 'hsiayTay is ymay tringsay'
+
 assertDeepEquals = (returnVal, expectVal) => {
   if (returnVal === expectVal) {return true}
   if (Array.isArray(returnVal !== Array.isArray(expectVal)) ||
