@@ -30,7 +30,7 @@ function tokenise(string) {
     // Skip over whitespace
     while(' \n\r\t'.includes(string[i]) && i < string.length) {i++}
     
-    matchData = string.substr(i).match(/^([a-zA-Z]+|[!#$%&*+-/<=>@^_.,;]+)/)
+    matchData = string.substr(i).match(/^(\w+|[!#$%&*+-/<=>@^_.,;]+)/)
     if (matchData) {
       matchData[0].length > 0 && tokens.push(matchData[0])
       i += matchData[0].length
