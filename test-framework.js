@@ -16,12 +16,42 @@ assertDeepEquals = (returnVal, expectVal) => {
   return Object.keys(returnVal).every(key => assertDeepEquals(returnVal[key], expectVal[key]))
 }
 
-// Types of test available
-const Test = {
-  assertDeepEquals,
+const assertEquals = (a, b, msg) => {
+  console.log(msg)
+  if (a === b) {
+    console.log(`PASS: "${a.slice(0,10)}..." === "${b.slice(0,10)}..."`)
+  } else {
+    console.log(`FAIL: "${a.slice(0,10)}..." !== "${b.slice(0,10)}..."`)
+  }
+}
+
+const expectError = (msg, fn) => {
+  console.log(msg)
+  try {
+    fn()
+  } catch(e) {
+    console.log('PASS')
+    return
+  }
+  console.log('FAIL')
 }
 
 // 'describe' and 'it' just run whatever they're given
-describe = it = (a, b) => b()
+function describe(description, fn) {
+  console.log(description)
+  fn()
+}
+
+const it = describe
+
+// Types of test available
+const Test = {
+  assertDeepEquals,
+  assertEquals,
+  describe,
+  expectError,
+  it,
+}
+
 
 module.exports = {it, describe, Test}

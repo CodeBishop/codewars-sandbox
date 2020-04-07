@@ -1,5 +1,9 @@
 function kcuf(code) {
-
+  return []
 }
 
-module.exports = kcuf
+function Execute(code, input) {
+  return ''
+}
+
+module.exports = {kcuf, Execute}

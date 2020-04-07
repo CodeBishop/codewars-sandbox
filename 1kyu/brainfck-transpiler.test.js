@@ -1,6 +1,5 @@
-const kcuf = require('./brainfck-transpiler')
-
-
+const {kcuf, Execute} = require('./brainfck-transpiler')
+const {Test} = require('../test-framework')
 
 const Check = (RawCode,Input = '',Expect = '',Message = '') =>
 {
