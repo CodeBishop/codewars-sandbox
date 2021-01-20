@@ -2,6 +2,9 @@
 This kata asks how many numbers between 0..n contain the digit 9. The formula is n minus all the numbers that don't contain it.
     EXAMPLE: nines(100) = 100 - 9^2
     The above works because there are 9 digits that are not 9 (the equation would be identical for the digit 7 or any other)
+
+Update Jan 19 2021:
+    This mostly works but it fails
 */
 function nines(n) {
     // console.log(`nines(${n}) called where n is a ${typeof(n)}}`);
@@ -28,15 +31,24 @@ function nines(n) {
 function test(a, b) {
     const answer = nines(a)
     if (answer === b) {
-        console.log(`PASS: nines(${a}) is ${answer}`)
+        console.log(`${'\033[32m'}PASS${'\033[39m'}: nines(${a}) is ${answer}`)
     } else {
-        console.log(`FAIL: nines(${a}) is ${typeof(answer)}:${answer}, expected: ${typeof(b)}:${b}`)
+        console.log(`${'\033[31m'}FAIL${'\033[39m'}: nines(${a}) is ${typeof(answer)}:${answer}, expected: ${typeof(b)}:${b}`)
     }
 }
 
 
 test(1n,0n);
 test(10n,1n);
+test(20n,2n);
 test(100n,19n);
+test(200n,38n);
+test(300n,57n);
 test(1000n,271n);
+test(1009n,272n);
+test(1010n,272n);
+test(1020n,273n);
+test(1100n,290n);
+test(2000n,290n);
+test(1100n,290n);
 test(3950n,1035n);
