@@ -15,9 +15,9 @@ assertDeepEquals = (returnVal, expectVal) => {
 const assertEquals = (a, b, msg) => {
   console.log(msg)
   if (a === b) {
-    console.log(`PASS: "${a.slice(0,10)}..." === "${b.slice(0,10)}..."`)
+    console.log(`${'\033[32m'}PASS${'\033[39m'}: "${a.slice(0,10)}..." === "${b.slice(0,10)}..."`)
   } else {
-    console.log(`FAIL: "${a.slice(0,10)}..." !== "${b.slice(0,10)}..."`)
+    console.log(`${'\033[31m'}FAIL${'\033[39m'}: "${a.slice(0,10)}..." !== "${b.slice(0,10)}..."`)
   }
 }
 
@@ -39,10 +39,10 @@ const expectError = (msg, fn) => {
   try {
     fn()
   } catch(e) {
-    console.log('PASS')
+    console.log(`${'\033[32m'}PASS${'\033[39m'}`)
     return
   }
-  console.log('FAIL')
+  console.log(`${'\033[32m'}PASS${'\033[39m'}`)
 }
 
 // 'describe' and 'it' just run whatever they're given
