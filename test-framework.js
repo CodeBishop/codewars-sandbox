@@ -13,11 +13,11 @@ assertDeepEquals = (returnVal, expectVal) => {
 }
 
 const assertEquals = (a, b, msg) => {
-  console.log(msg)
+  if (msg) console.log(msg)
   if (a === b) {
-    console.log(`${'\033[32m'}PASS${'\033[39m'}: "${a.slice(0,10)}..." === "${b.slice(0,10)}..."`)
+    console.log(`${'\033[32m'}PASS${'\033[39m'}: ${a} === ${b}`)
   } else {
-    console.log(`${'\033[31m'}FAIL${'\033[39m'}: "${a.slice(0,10)}..." !== "${b.slice(0,10)}..."`)
+    console.log(`${'\033[31m'}FAIL${'\033[39m'}: ${a} !== ${b}`)
   }
 }
 

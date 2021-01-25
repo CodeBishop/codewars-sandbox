@@ -66,7 +66,7 @@ function sudoku(puzzle) {
       }
     }
     console.log(`Empty cells remaining: ${cellsRemaining}`)
-  } while (cellsRemaining > 0)
+  } while (cellsRemaining > 47)
 
   return puzzle
 }
@@ -125,3 +125,16 @@ Test.describe('Sudoku', function(){
       Test.assertEquals(JSON.stringify(sudoku(puzzle)),JSON.stringify(solution), "Incorrect solution for the following puzzle: " + JSON.stringify(puzzle));
   });
 });
+
+// Test of my own
+console.log(sudoku([
+  [0,5,0,9,0,3,0,7,0],
+  [7,0,8,4,0,0,0,5,6],
+  [0,1,0,0,5,0,0,0,0],
+  [8,0,9,0,0,0,5,0,0],
+  [1,0,2,0,0,0,6,0,0],
+  [0,4,0,0,0,0,0,1,0],
+  [4,2,7,0,0,0,9,0,8],
+  [0,0,0,0,0,9,2,3,1],
+  [0,0,1,0,0,0,7,0,5]
+]))
